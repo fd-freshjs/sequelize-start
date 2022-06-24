@@ -2,11 +2,15 @@ const { getUserById, getUserList, createUser, updateUserById, deleteUserById } =
 
 class UserController {
   createUser = async (req, res, next) => {
-    const data = req.body;
+    try {
+      const data = req.body;
 
-    const createdUser = await createUser(data);
+      const createdUser = await createUser(data);
 
-    res.status(200).send({ data: createdUser });
+      res.status(200).send({ data: createdUser });
+    } catch (error) {
+      next(error);
+    }
   };
 
   updateUser = async (req, res, next) => {
@@ -26,9 +30,7 @@ class UserController {
     res.status(200).send({ data: deletedUser });
   };
 
-  getById = async (req, res, next) => {
-    console.log(req.params.id);
-  
+  getById = async (req, res, next) => {  
     const id = Number(req.params.id);
   
     const foundUser = await getUserById(id);

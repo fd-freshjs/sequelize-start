@@ -1,3 +1,4 @@
+const createHttpError = require("http-errors");
 const { User } = require("../models");
 
 class UserService {
@@ -20,18 +21,22 @@ class UserService {
     const user = await User.findByPk(userId);
 
     if (!user) {
-      throw new Error("User not found");
+      throw createHttpError(404, "User not found");
     }
 
     return user;
   };
 
   updateUserById = async (id, data) => {
-    await User.update(data, {
+    const [count] = await User.update(data, {
       where: {
         id,
       },
     });
+    if (count === 0) {
+      throw createHttpError(404, "User not found");
+    }
+
     const updatedUser = await this.getUserById(id);
 
     return updatedUser;
@@ -40,7 +45,7 @@ class UserService {
   deleteUserById = async (id) => {
     const deletedUser = await this.getUserById(id);
     if (!deletedUser) {
-      throw new Error("User not found");
+      throw createHttpError(404, "User not found");
     }
 
     await User.destroy({ where: { id } });
