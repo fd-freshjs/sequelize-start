@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getList, getById } = require("../controllers/user.contr");
+const { getList, getById, createUser, updateUser, deleteUser } = require("../controllers/user.contr");
 
 // path /api/users
 const userRouter = Router();
@@ -10,12 +10,12 @@ userRouter.get('/', getList);
 userRouter.get('/:id', getById);
 
 // create
-userRouter.post('/');
+userRouter.post('/', createUser);
 
 // update
-userRouter.patch('/:id');
+userRouter.patch('/:id', updateUser);
 
 // delete
-userRouter.delete('/:id');
+userRouter.delete('/:id', deleteUser);
 
 module.exports = userRouter;

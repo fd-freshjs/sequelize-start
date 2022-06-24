@@ -1,0 +1,15 @@
+
+1. git init && npm init -y && sequelize init
+папки: 
+
+2. изменить config
+
+3. sequelize db:create
+
+4. sequelize model:create
+
+5. редактирование модели и миграции
+
+6. запуск миграций
+
+7. запуск сервера

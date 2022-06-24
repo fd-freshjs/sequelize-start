@@ -1,9 +1,30 @@
-const { getUserById, getUserList } = require("../services/user.service");
+const { getUserById, getUserList, createUser, updateUserById, deleteUserById } = require("../services/user.service");
 
 class UserController {
-  createUser = async (req, res, next) => {};
-  updateUser = async (req, res, next) => {};
-  deleteUser = async (req, res, next) => {};
+  createUser = async (req, res, next) => {
+    const data = req.body;
+
+    const createdUser = await createUser(data);
+
+    res.status(200).send({ data: createdUser });
+  };
+
+  updateUser = async (req, res, next) => {
+    const data = req.body;
+    const id = req.params.id;
+
+    const updatedUser = await updateUserById(id, data);
+
+    res.status(200).send({ data: updatedUser });
+  };
+
+  deleteUser = async (req, res, next) => {
+    const id = req.params.id;
+
+    const deletedUser = await deleteUserById(id);
+
+    res.status(200).send({ data: deletedUser });
+  };
 
   getById = async (req, res, next) => {
     console.log(req.params.id);
