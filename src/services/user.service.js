@@ -12,7 +12,9 @@ class UserService {
     const foundUsers = await User.findAll({
       limit: limit,
       offset: (page - 1) * limit,
-      include: Order, // LEFT OUTER JOIN
+      include: {
+        model: Order
+      }, // LEFT OUTER JOIN
     });
 
     return foundUsers;
