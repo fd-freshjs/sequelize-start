@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const { User } = require("../models");
+const { User, Order } = require("../models");
 
 class UserService {
   createUser = async (data) => {
@@ -12,6 +12,7 @@ class UserService {
     const foundUsers = await User.findAll({
       limit: limit,
       offset: (page - 1) * limit,
+      include: Order, // LEFT OUTER JOIN
     });
 
     return foundUsers;

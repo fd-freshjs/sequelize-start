@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
+
+      Product.belongsTo(models.Category, {
+        targetKey: 'name',
+      });
     }
   }
   Product.init({
@@ -39,4 +43,8 @@ module.exports = (sequelize, DataTypes) => {
   return Product;
 };
 
+/* 
+  создайте модель и миграцию категория
+  в миграции свяжите products.category с categories.name
 
+*/
