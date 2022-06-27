@@ -15,6 +15,12 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+
+        // foreign key
+        references: {
+          key: 'id',
+          model: 'users',
+        },
       },
       phone: {
         type: Sequelize.STRING,
