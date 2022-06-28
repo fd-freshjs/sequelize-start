@@ -1,11 +1,7 @@
 'use strict';
-/* 
-  1) создайте модель и миграцию категория
-  2) в миграции свяжите products.category с categories.name
-  3) написать ассоциацию 1:N моделей Category и Product
-*/
-
 module.exports = {
+  name: '20220627125220-create-category.js',
+
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('categories', {
       id: {

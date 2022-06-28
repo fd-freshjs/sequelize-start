@@ -1,5 +1,7 @@
 "use strict";
 module.exports = {
+  name: '20220628114150-create-products-to-orders.js',
+  
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("products_to_orders", {
       amount: {

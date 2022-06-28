@@ -1,6 +1,7 @@
 'use strict';
-
 module.exports = {
+  name: '20220627140257-create-bank-card.js',
+
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('bank_cards', {
       id: {

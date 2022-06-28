@@ -1,5 +1,7 @@
 'use strict';
 module.exports = {
+  name: '20220627114346-create-products.js',
+
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('products', {
       id: {

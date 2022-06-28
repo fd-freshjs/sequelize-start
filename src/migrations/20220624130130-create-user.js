@@ -1,5 +1,7 @@
 'use strict';
 module.exports = {
+  name: '20220624130130-create-user.js',
+
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users', {
       id: {
