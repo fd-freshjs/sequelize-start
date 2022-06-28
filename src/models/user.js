@@ -9,16 +9,20 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
+    static associate({ BankCard, Order, Product, ProductsToUsers }) {
       // define association here
-      User.hasMany(models.Order, { foreignKey: 'user_id', targetKey: 'id',  as: 'orders' });
+      User.hasMany(Order, {
+        foreignKey: "user_id",
+        targetKey: "id",
+        as: "orders",
+      });
 
-      User.hasOne(models.BankCard, { foreignKey: 'userId', as: 'bankCard' });
+      User.hasOne(BankCard, { foreignKey: "userId", as: "bankCard" });
+
+      User.belongsToMany(Product, {
+        through: ProductsToUsers,
+        foreignKey: "user_id",
+      });
     }
   }
   User.init(
@@ -48,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.TEXT,
         allowNull: false,
-        defaultValue: '',
+        defaultValue: "",
         validate: {
           len: [6, 64],
         },
@@ -66,9 +70,9 @@ module.exports = (sequelize, DataTypes) => {
             const date = new Date(value);
 
             if (date > new Date()) {
-              throw new Error('Cannot set dob after current date');
+              throw new Error("Cannot set dob after current date");
             }
-          }
+          },
         },
       },
       height: {
@@ -80,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "User",
-      tableName: 'users',
+      tableName: "users",
     }
   );
   return User;
