@@ -1,18 +1,17 @@
 "use strict";
 const { Model } = require("sequelize");
-const { ProductsToOrders } = require('.');
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
-    static associate(models) {
+    static associate({ Category, Order, ProductsToOrders }) {
       // define association here
 
-      Product.belongsTo(models.Category, {
+      Product.belongsTo(Category, {
         targetKey: "name",
         foreignKey: "category",
       });
 
-      Product.belongsToMany(models.Order, {
+      Product.belongsToMany(Order, {
         through: ProductsToOrders,
         foreignKey: "product_id",
       });
