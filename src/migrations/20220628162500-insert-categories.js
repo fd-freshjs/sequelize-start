@@ -1,6 +1,8 @@
 "use strict";
 
 module.exports = {
+  name: '20220628162500-insert-categories.js',
+
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
       "categories",
