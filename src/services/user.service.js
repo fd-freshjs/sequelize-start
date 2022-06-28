@@ -49,6 +49,16 @@ class UserService {
     return user;
   };
 
+  findSingleUser = async (whereCriteria) => {
+    const user = await User.findOne({ where: whereCriteria });
+
+    if (!user) {
+      throw createHttpError(404, "User not found");
+    }
+
+    return user;
+  };
+
   updateUserById = async (id, data) => {
     const [count] = await User.update(data, {
       where: {

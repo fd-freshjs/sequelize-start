@@ -27,6 +27,16 @@ class CategoryService {
     return cat;
   };
 
+  findSingleCategory = async (whereCriteria) => {
+    const cat = await Category.findOne({ where: whereCriteria });
+
+    if (!cat) {
+      throw createHttpError(404, "Category not found");
+    }
+
+    return cat;
+  };
+
   updateCategoryById = async (id, data) => {
     const [count] = await Category.update(data, {
       where: {

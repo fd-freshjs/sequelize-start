@@ -30,9 +30,9 @@ class CategoryController {
     try {
       const id = req.params.id;
 
-      const deletedUser = await deleteCategoryById(id);
+      const deletedCategory = await deleteCategoryById(id);
 
-      res.status(200).send({ data: deletedUser });
+      res.status(200).send({ data: deletedCategory });
     } catch (error) {
       next(error);
     }
@@ -42,9 +42,9 @@ class CategoryController {
     try {
       const id = Number(req.params.id);
     
-      const foundUser = await findCategoryById(id);
+      const foundCategory = await findCategoryById(id);
     
-      res.status(200).send({ data: foundUser });
+      res.status(200).send({ data: foundCategory });
     } catch (error) {
       next(error);
     }
@@ -56,9 +56,9 @@ class CategoryController {
       const page = req.query.page || 1;
       const limit = req.query.limit || 10;
     
-      const userList = await findCategoryList(limit, page);
+      const categoryList = await findCategoryList(limit, page);
     
-      res.status(200).send({ data: userList });
+      res.status(200).send({ data: categoryList });
     } catch (error) {
       next(error);
     }
