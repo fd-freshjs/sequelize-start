@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const { User, Order } = require("../models");
+const { User, Order, BankCard } = require("../models");
 
 class UserService {
   createUser = async (data) => {
@@ -12,10 +12,29 @@ class UserService {
     const foundUsers = await User.findAll({
       limit: limit,
       offset: (page - 1) * limit,
-      include: {
-        model: Order
-      }, // LEFT OUTER JOIN
+      include: [
+        {
+          model: Order,
+          as: "orders",
+        },
+        { model: BankCard, as: "bankCard" },
+      ], // LEFT OUTER JOIN
     });
+    /* 
+    [  
+      {
+        // user data...
+        orders: [
+          {
+            // order data...
+          }
+        ],
+        bankCard: {
+          // bankcard data...
+        } || null
+      }
+    ]
+    */
 
     return foundUsers;
   };
