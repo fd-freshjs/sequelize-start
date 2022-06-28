@@ -8,7 +8,7 @@ class UserService {
     return newUser;
   };
 
-  getUserList = async (limit, page) => {
+  findUserList = async (limit, page) => {
     const foundUsers = await User.findAll({
       limit: limit,
       offset: (page - 1) * limit,
@@ -39,7 +39,7 @@ class UserService {
     return foundUsers;
   };
 
-  getUserById = async (userId) => {
+  findUserById = async (userId) => {
     const user = await User.findByPk(userId);
 
     if (!user) {
@@ -59,13 +59,13 @@ class UserService {
       throw createHttpError(404, "User not found");
     }
 
-    const updatedUser = await this.getUserById(id);
+    const updatedUser = await this.findUserById(id);
 
     return updatedUser;
   };
 
   deleteUserById = async (id) => {
-    const deletedUser = await this.getUserById(id);
+    const deletedUser = await this.findUserById(id);
     if (!deletedUser) {
       throw createHttpError(404, "User not found");
     }

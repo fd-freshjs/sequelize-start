@@ -1,13 +1,13 @@
 const { Router } = require("express");
-const { getList, getById, createUser, updateUser, deleteUser } = require("../controllers/user.contr");
+const { getUserList, getUserById, createUser, updateUser, deleteUser } = require("../controllers/user.contr");
 
 // path /api/users
 const userRouter = Router();
 
 // get list
-userRouter.get('/', getList);
+userRouter.get('/', getUserList);
 // get by id
-userRouter.get('/:id', getById);
+userRouter.get('/:id', getUserById);
 
 // create
 userRouter.post('/', createUser);

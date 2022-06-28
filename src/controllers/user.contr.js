@@ -1,4 +1,4 @@
-const { getUserById, getUserList, createUser, updateUserById, deleteUserById } = require("../services/user.service");
+const { findUserById, findUserList, createUser, updateUserById, deleteUserById } = require("../services/user.service");
 
 class UserController {
   createUser = async (req, res, next) => {
@@ -14,38 +14,54 @@ class UserController {
   };
 
   updateUser = async (req, res, next) => {
-    const data = req.body;
-    const id = req.params.id;
+    try {
+      const data = req.body;
+      const id = req.params.id;
 
-    const updatedUser = await updateUserById(id, data);
+      const updatedUser = await updateUserById(id, data);
 
-    res.status(200).send({ data: updatedUser });
+      res.status(200).send({ data: updatedUser });
+    } catch (error) {
+      next(error);
+    }
   };
 
   deleteUser = async (req, res, next) => {
-    const id = req.params.id;
+    try {
+      const id = req.params.id;
 
-    const deletedUser = await deleteUserById(id);
+      const deletedUser = await deleteUserById(id);
 
-    res.status(200).send({ data: deletedUser });
+      res.status(200).send({ data: deletedUser });
+    } catch (error) {
+      next(error);
+    }
   };
 
-  getById = async (req, res, next) => {  
-    const id = Number(req.params.id);
-  
-    const foundUser = await getUserById(id);
-  
-    res.status(200).send({ data: foundUser });
+  getUserById = async (req, res, next) => {
+    try {
+      const id = Number(req.params.id);
+    
+      const foundUser = await findUserById(id);
+    
+      res.status(200).send({ data: foundUser });
+    } catch (error) {
+      next(error);
+    }
   };
 
-  getList = async (req, res, next) => {
-    // ?page=1&limit=10
-    const page = req.query.page || 1;
-    const limit = req.query.limit || 10;
-  
-    const userList = await getUserList(limit, page);
-  
-    res.status(200).send({ data: userList });
+  getUserList = async (req, res, next) => {
+    try {
+      // ?page=1&limit=10
+      const page = req.query.page || 1;
+      const limit = req.query.limit || 10;
+    
+      const userList = await findUserList(limit, page);
+    
+      res.status(200).send({ data: userList });
+    } catch (error) {
+      next(error);
+    }
   };
 }
 
