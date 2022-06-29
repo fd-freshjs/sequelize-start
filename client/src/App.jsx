@@ -16,23 +16,27 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <header>
+        <div>Mini-Rozetka</div>
+        <nav></nav>
+      </header>
 
       <main>
         <section>
-          <h2>Product list</h2>
+          <h2>Список продуктов</h2>
           <ul>
+
             {prodList.map((prod) => (
               <li>
                 <article>
-                  <h3>Brand: Product name 1</h3>
+                  <h3>{prod.brand}: {prod.name}</h3>
                   <div>
-                    <div>Price</div>
-                    <div>123</div>
+                    <div>Цена</div>
+                    <div>{prod.price}</div>
                   </div>
                   <div>
-                    <div>Amount</div>
-                    <div>123</div>
+                    <div>Кол-во на складе</div>
+                    <div>{prod.amount}</div>
                   </div>
                 </article>
               </li>
