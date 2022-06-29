@@ -1,4 +1,10 @@
-const { findCategoryById, findCategoryList, createCategory, updateCategoryById, deleteCategoryById } = require("../services/category.service");
+const {
+  findCategoryById,
+  findCategoryList,
+  createCategory,
+  updateCategoryById,
+  deleteCategoryById,
+} = require("../services/category.service");
 
 class CategoryController {
   createCategory = async (req, res, next) => {
@@ -41,9 +47,9 @@ class CategoryController {
   getCategoryById = async (req, res, next) => {
     try {
       const id = Number(req.params.id);
-    
+
       const foundCategory = await findCategoryById(id);
-    
+
       res.status(200).send({ data: foundCategory });
     } catch (error) {
       next(error);
@@ -55,9 +61,9 @@ class CategoryController {
       // ?page=1&limit=10
       const page = req.query.page || 1;
       const limit = req.query.limit || 10;
-    
+
       const categoryList = await findCategoryList(limit, page);
-    
+
       res.status(200).send({ data: categoryList });
     } catch (error) {
       next(error);
