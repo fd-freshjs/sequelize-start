@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const { Category } = require("../models");
+const { Category } = require("../db/models");
 
 class CategoryService {
   createCategory = async (data) => {

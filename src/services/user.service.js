@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const { User, Order, BankCard } = require("../models");
+const { User, Order, BankCard } = require("../db/models");
 
 class UserService {
   createUser = async (data) => {

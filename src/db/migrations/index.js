@@ -1,5 +1,3 @@
-const { Sequelize } = require("../models");
-
 const migrateList = [
   require("./20220624130130-create-user"),
   require("./20220627111205-add-password"),

@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 // получение конфига
 
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../../config/database.js')[env];
 const db = {};
 
 // создание подключения

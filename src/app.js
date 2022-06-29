@@ -4,8 +4,8 @@ const { handleErrorMW } = require('./middlewares/error-handler');
 
 
 // запуск указанных миграций
-const { migrate } = require('./migrations');
-const db = require('./models');
+const { migrate } = require('./db/migrations');
+const db = require('./db/models');
 migrate(db.sequelize);
 
 const app = express();
