@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const { Product } = require("../models");
+const { Product } = require("../db/models");
 const { findSingleCategory } = require("./category.service");
 
 class ProductService {
